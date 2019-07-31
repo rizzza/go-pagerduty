@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net"
 	"net/http"
 	"runtime"
@@ -119,13 +118,10 @@ func (c *Client) put(path string, payload interface{}, headers *map[string]strin
 }
 
 func (c *Client) post(path string, payload interface{}, headers *map[string]string) (*http.Response, error) {
-	log.Printf("DEBUG: Payload before marshal %+v", payload)
-
 	data, err := json.Marshal(payload)
 	if err != nil {
 		return nil, err
 	}
-	log.Printf("DEBUG: Payload after marshal %+v", data)
 	return c.do("POST", path, bytes.NewBuffer(data), headers)
 }
 
