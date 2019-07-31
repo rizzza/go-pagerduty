@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net"
 	"net/http"
 	"runtime"
@@ -121,7 +120,6 @@ func (c *Client) put(path string, payload interface{}, headers *map[string]strin
 func (c *Client) post(path string, payload interface{}, headers *map[string]string) (*http.Response, error) {
 	data, err := json.Marshal(payload)
 
-	log.Printf("DEBUG: Data after marshalling: %s", string(data))
 	if err != nil {
 		return nil, err
 	}

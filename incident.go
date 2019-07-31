@@ -3,7 +3,6 @@ package pagerduty
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 
 	"github.com/google/go-querystring/query"
 )
@@ -110,7 +109,6 @@ type CreateIncidentOptions struct {
 func (c *Client) CreateIncident(from string, i *CreateIncident) (*Incident, error) {
 	headers := make(map[string]string)
 	headers["From"] = from
-	log.Printf("DEBUG: Payload before post %+v", i)
 	resp, e := c.post("/incidents", i, &headers)
 	if e != nil {
 		return nil, e
@@ -118,7 +116,6 @@ func (c *Client) CreateIncident(from string, i *CreateIncident) (*Incident, erro
 
 	var ii createIncidentResponse
 	e = json.NewDecoder(resp.Body).Decode(&ii)
-	log.Printf("DEBUG: Decoded body after post %+v", e)
 	if e != nil {
 		return nil, e
 	}
