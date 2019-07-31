@@ -22,7 +22,7 @@ type PendingAction struct {
 
 // Assignment is the data structure for an assignment of an incident
 type Assignment struct {
-	At       string
+	At       string `json:"at,omitempty"`
 	Assignee APIObject
 }
 
